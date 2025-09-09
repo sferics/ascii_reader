@@ -56,7 +56,7 @@ or
 - Each subsequent line must contain **four columns** of numeric data, separated by whitespace:
 
 ```
-  Kl     MFc     MOb    #
+  Kl      MFc    MOb    #
 -----  ------ ------  ----
   0.0    0.00   2.73   400
   1.0    0.72   3.10   100
