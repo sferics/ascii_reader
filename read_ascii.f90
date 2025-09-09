@@ -85,8 +85,9 @@ PROGRAM read_ascii
 
     CALL read_table(filename, nmax, nrows, Kl, MFc, MOb, count_vals)
 
-    PRINT '(A)', "Rows read: " // TRIM(adjustl(write_int(nrows)))
-    PRINT '(A)', "   Kl    MFc   MOb   #"
+    !PRINT '(A)', "Rows read: " // TRIM(adjustl(write_int(nrows)))
+    PRINT '(A)', "  Kl      MFc    MOb    # "
+    PRINT '(A)', "-----  ------ ------  ----"
     DO i = 1, nrows
         PRINT '(F5.1, F8.2, F7.2, I6)', Kl(i), MFc(i), MOb(i), &
               count_vals(i)
