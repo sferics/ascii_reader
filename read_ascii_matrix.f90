@@ -8,24 +8,44 @@
 
 PROGRAM read_ascii_matrix
     IMPLICIT NONE
-
+        
     INTEGER, PARAMETER :: max_rows = 100, max_cols = 20
     INTEGER :: iunit, ios, i, j, nrow, ncol, len, arg_len
-    CHARACTER(len=256) :: filename, line
+    CHARACTER(len=256) :: filename, line, arg
     CHARACTER(len=32) :: row_labels(max_rows), col_labels(max_cols)
     REAL :: matrix(max_rows, max_cols)
     REAL :: row_sum(max_rows), col_sum(max_cols)
     REAL :: total_sum
     CHARACTER(len=32) :: tokens(max_cols+2)
     CHARACTER(len=1024) :: buffer, tmp_str
-
-    ! Get filename or use default
-    CALL GET_COMMAND_ARGUMENT(1, filename, LENGTH=arg_len)
-    IF (arg_len == 0) THEN
-        filename = 'matrix.txt'
-        !PRINT '(A)', 'No filename supplied; reading default matrix.txt'
+    LOGICAL :: show_help
+    
+    ! Get first command line argument, if exists
+    CALL GET_COMMAND_ARGUMENT(1, arg, LENGTH=arg_len)
+    IF (arg_len > 0) THEN
+        arg = arg(:arg_len)
+        IF (TRIM(arg) == '-h' .OR. TRIM(arg) == '--help') THEN
+            show_help = .TRUE.
+        ELSE
+            show_help = .FALSE.
+            filename = arg
+        END IF
     ELSE
-        filename = filename(:arg_len)
+        show_help = .FALSE.
+        filename = 'matrix.txt'
+    END IF
+
+    IF (show_help) THEN
+        PRINT '(A)', "Usage: ./read_ascii_matrix [filename]"
+        PRINT '(A)', "Reads a matrix-style ASCII table file with row and column labels."
+        PRINT '(A)', "Default filename: matrix.txt"
+        PRINT '(A)', "Input format example:"
+        PRINT '(A)', "Obs \ For   2.5   5.0  ...  Column Labels  Row_Sum"
+        PRINT '(A)', "---------  ----  ----  ...  -------------  -------"
+        PRINT '(A)', "   2.5      0     0    ...          ...          0"
+        PRINT '(A)', "   ...      ...   ...  ...          ...          ..."
+        PRINT '(A)', "  Col_Sum   0     1    ...          ...        sum"
+        STOP
     END IF
 
     ! Open and check file

@@ -74,10 +74,99 @@ or
 
 ***
 
+# ascii_reader_matrix
+
+## Overview
+
+`read_ascii_matrix` is a Fortran 90 program designed as a **template** for reading and verifying matrix-style ASCII table files with row and column labels plus summation rows/columns.
+
+It loads the matrix data, recalculates row and column sums, and prints the full table with sums to confirm that input parsing and summation integrity are correct.
+
+This program is intended for adaptation in workflows handling matrix-structured ASCII data.
+
+***
+
+## Usage
+
+### Compiling
+
+Compile with Intel Fortran compiler:
+
+```bash
+ifort -O2 -o read_ascii_matrix read_ascii_matrix.f90
+```
+
+
+### Running
+
+You may run the program with an optional filename argument:
+
+```bash
+./read_ascii_matrix
+```
+
+Reads the default file `matrix.txt`.
+
+Or specify a custom file:
+
+```bash
+./read_ascii_matrix your_matrix_file.txt
+```
+
+
+### Help
+
+Request usage information with:
+
+```bash
+./read_ascii_matrix -h
+```
+
+or
+
+```bash
+./read_ascii_matrix --help
+```
+
+
+***
+
+## Input File Format
+
+- File must include two header lines (a descriptive header and a separator) which are echoed verbatim.
+- Followed by a column label line including a row label column and a trailing `Row_Sum` column.
+- Subsequent lines contain:
+    - Row labels (typically numeric or strings).
+    - Matrix data columns (numeric values).
+    - Trailing row sum column.
+- Ends with a `Col_Sum` row giving column sums and total sum.
+
+Example input snippet:
+
+```
+Obs \ For   2.5   5.0   7.5  10.0  12.5  15.0  20.0  30.0  40.0  Row_Sum
+---------  ----  ----  ----  ----  ----  ----  ----  ----  ----  -------
+      2.5     0     0     0     0     0     0     0     0     0        0
+      5.0     0     1     1     0     0     0     0     0     0        2
+      ...
+  Col_Sum     0     1    23   103    94    52    31     0     0      304
+```
+
+
+***
+
+## Output
+
+- The program reproduces the input file line-by-line (header, separator, labels, data).
+- The final `Col_Sum` row is recalculated and printed in the exact format.
+- Use this output to confirm the file integrity or as a starting point for further data processing.
+
+***
+
 ## Scope and Adaptation
 
-- This template is intended as a **starting point** for further development or as a parser module for larger projects.
-- It demonstrates basic file input, error handling, command-line arguments, and formatted output in Fortran 90.
+- These template are intended as a **starting point** for further development or as parser modules for larger projects.
+- They demonstrates basic file input, error handling, command-line arguments, and formatted output in Fortran 90.
 - Comments are provided for clarity and maintainability.
 
 ***
