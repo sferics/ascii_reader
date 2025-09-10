@@ -1,3 +1,19 @@
+# Table of Contents
+
+- [ascii_reader](#ascii_reader)
+    - [Overview](#overview)
+    - [Usage](#usage)
+    - [Input File Format](#input-file-format)
+    - [Output](#output)
+- [ascii_reader_matrix](#ascii_reader_matrix)
+    - [Overview](#overview-1)
+    - [Usage](#usage-1)
+    - [Input File Format](#input-file-format-1)
+    - [Output](#output-1)
+- [Scope and Adaptation](#scope-and-adaptation)
+
+***
+
 # ascii_reader
 
 ## Overview
@@ -56,11 +72,11 @@ or
 - Each subsequent line must contain **four columns** of numeric data, separated by whitespace:
 
 ```
-   Kl     MFc     MOb     #
------  ------  ------  ----
-  0.0    0.00    2.73   400
-  1.0    0.72    3.10   100
-100.0   99.24   87.43   300
+ Kl     MFc   MOb    #
+-----  ------ ------  ----
+  0.0   0.00   2.73   400
+  1.0   0.72   3.10   100
+100.0  99.24  87.43   300
 ```
 
 
@@ -163,20 +179,10 @@ Obs \ For   2.5   5.0   7.5  10.0  12.5  15.0  20.0  30.0  40.0  Row_Sum
 
 ***
 
-## Scope and Adaptation
+# Scope and Adaptation
 
-- These template are intended as a **starting point** for further development or as parser modules for larger projects.
-- They demonstrates basic file input, error handling, command-line arguments, and formatted output in Fortran 90.
-- Comments are provided for clarity and maintainability.
-
-***
-
-## License
-
-You may use, modify, and redistribute this code freely for educational or research purposes. No warranty is provided.
-
-***
-
-**Author:**
-Juri Hubrig / METEO SERVICE weather research
-September 2025
+- This template is intended as a **starting point** for further development or as a parser module for larger projects involving ASCII data imports.
+- Both readers demonstrate basic file input, error handling, command-line argument parsing, and formatted output in Fortran 90.
+- The print statements in each program help confirm that the input file was read correctly before further scientific or business processing.
+- These templates can be extended and customized to support other ASCII data formats, variable column counts, or advanced validation as needed.
+- Clear and detailed commenting is included to aid maintenance and adaptation by future developers.
