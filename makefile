@@ -1,11 +1,15 @@
 FC = ifort
 FFLAGS = -O2
-TARGET = read_ascii
 
-all: $(TARGET)
+TARGETS = read_ascii read_ascii_matrix
 
-$(TARGET): read_ascii.f90
-	$(FC) $(FFLAGS) -o $(TARGET) read_ascii.f90
+all: $(TARGETS)
+
+read_ascii: read_ascii.f90
+	$(FC) $(FFLAGS) -o read_ascii read_ascii.f90
+
+read_ascii_matrix: read_ascii_matrix.f90
+	$(FC) $(FFLAGS) -o read_ascii_matrix read_ascii_matrix.f90
 
 clean:
-	rm -f $(TARGET) *.mod *.obj *.o
+	rm -f read_ascii read_ascii_matrix *.mod *.obj *.o
